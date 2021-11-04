@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+    <div class="container">
+        <h2>Create New Meal</h2>
+
+        <form th:action="@{/meals/create}" method="post">
+            <div class="form-group">
+                <label>Name</label>
+                <input th:field="*{meal.name}" type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <input th:field="*{meal.description}" type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Recipes:</label>
+                    <input class="form-control" type="checkbox" th:each="recipe : ${recipes}" th:field="*{meal.recipes}"
+                           th:value="${recipe}"
+                           th:text="${recipe.name}"
+                    />
+            </div>
+
+            <div class="form-group">
+                <label>Author</label>
+                <input type="text" th:name="recipe.user" th:value="*{user.getUserName()}" class="form-control" disabled>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>

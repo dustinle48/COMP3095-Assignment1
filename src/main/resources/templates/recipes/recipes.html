@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>COMP 3095 Java Spring</title>
+</head>
+<body>
+
+<h1>recipe List</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+    </tr>
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe.getId()}">123</td>
+        <td th:text="${recipe.getName()}">123</td>
+        <td th:text="${recipe.getUser()}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile - COMP3095 - Assignment 1</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+    <div class="container">
+
+        <form th:object="${user}">
+            <div class="form-group">
+                <label>Email</label>
+                <input th:field="*{email}" type="text" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input th:field="*{userName}" type="text" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+                <label>Firstname</label>
+                <input th:field="*{firstName}" type="text" class="form-control disabled" disabled>
+            </div>
+            <div class="form-group">
+                <label>Lastname</label>
+                <input th:field="*{lastName}" type="text" class="form-control disabled" disabled>
+            </div>
+        </form>
+    </div>
+
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+        <th>DESCRIPTION</th>
+        <th>RECIPES</th>
+    </tr>
+    <tr th:each="meal : ${meals}">
+        <td th:text="${meal.getId()}">123</td>
+        <td th:text="${meal.getName()}">123</td>
+        <td th:text="${meal.getUser()}"></td>
+        <td th:text="${meal.getDescription()}"></td>
+        <td th:each="recipe : ${meal.getRecipes()}">
+            <p th:text="${recipe.getName()}"></p>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

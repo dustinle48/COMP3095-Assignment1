@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Page</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+
+        <form th:object="${user}" th:action="@{/register}" method="post">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input th:field="*{email}" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small class="form-text text-muted">Email will be used to log in.</small>
+            </div>
+            <div class="form-group">
+                <label>Firstname</label>
+                <input th:field="*{firstName}" type="text" class="form-control" id="firstName" placeholder="Firstname">
+            </div>
+            <div class="form-group">
+                <label>Lastname</label>
+                <input th:field="*{lastName}" type="text" class="form-control" id="lastName" placeholder="Lastname">
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input th:field="*{userName}" type="text" class="form-control" id="userName" placeholder="Username">
+                <small class="form-text text-muted">This name will be displayed instead of your real name.</small>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input th:field="*{password}" type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label>Confirm password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>
