@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -15,5 +15,9 @@
         <td th:text="${user.getRecipes()}"></td>
     </tr>
 </table>
+
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
 </body>
 </html>

@@ -1,3 +1,11 @@
+/*
+Project: Cookbook Forum
+        * Assignment: 1
+        * Author(s): Le Duc Thinh
+        * Student Number: 101110291
+        * Date: Nov 6th 2021
+        * Description: This file is to bootstrap some sample data.
+*/
 package gbc.comp3095.assignment1.bootstrap;
 
 import gbc.comp3095.assignment1.models.Meal;
@@ -10,9 +18,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.Set;
 
 @Component

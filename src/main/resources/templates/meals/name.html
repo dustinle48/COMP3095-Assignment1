@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Meals - COMP3095 - Assignment 1</title>
+    <title>Meal - COMP3095 - Assignment 1</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
@@ -19,26 +19,24 @@
 
         <table class="table table-bordered">
             <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">NAME</th>
-                    <th scope="col">AUTHOR</th>
-                    <th scope="col">DESCRIPTION</th>
-                    <th scope="col">RECIPES</th>
-                    <th scope="col">LINK</th>
-                </tr>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NAME</th>
+                <th scope="col">AUTHOR</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col">RECIPES</th>
+            </tr>
             </thead>
             <tbody>
-                <tr th:each="meal : ${meals}">
-                    <th scope="row" th:text="${meal.getId()}"></th>
-                    <td th:text="${meal.getName()}"></td>
-                    <td th:text="${meal.getUser().getUserName()}"></td>
-                    <td th:text="${meal.getDescription()}"></td>
-                    <td>
-                        <span class="badge badge-pill badge-light" th:each="recipe : ${meal.getRecipes()}" th:text="${recipe.getName()}"></span>
-                    </td>
-                    <td><a th:href="@{'/meals/' + ${meal.name}}">View Meal</a></td>
-                </tr>
+            <tr>
+                <th scope="row" th:text="${meal.getId()}"></th>
+                <td th:text="${meal.getName()}"></td>
+                <td th:text="${meal.getUser().getUserName()}"></td>
+                <td th:text="${meal.getDescription()}"></td>
+                <td>
+                    <span class="badge badge-pill badge-light" th:each="recipe : ${meal.getRecipes()}" th:text="${recipe.getName()}"></span>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

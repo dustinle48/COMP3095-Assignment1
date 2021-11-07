@@ -1,7 +1,14 @@
+/*
+Project: Cookbook Forum
+        * Assignment: 1
+        * Author(s): Le Duc Thinh
+        * Student Number: 101110291
+        * Date: Nov 6th 2021
+        * Description: This file is to handle Log in and Registration progress.
+*/
 package gbc.comp3095.assignment1.controllers;
 
 import gbc.comp3095.assignment1.models.User;
-import gbc.comp3095.assignment1.repositories.UserRepository;
 import gbc.comp3095.assignment1.services.UserService;
 import gbc.comp3095.assignment1.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;

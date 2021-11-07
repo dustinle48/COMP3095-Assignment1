@@ -1,3 +1,11 @@
+/*
+Project: Cookbook Forum
+        * Assignment: 1
+        * Author(s): Le Duc Thinh
+        * Student Number: 101110291
+        * Date: Nov 6th 2021
+        * Description: This file is to prevent user from creating more than 1 account using the same email.
+*/
 package gbc.comp3095.assignment1.validators;
 
 import gbc.comp3095.assignment1.models.User;

@@ -1,3 +1,11 @@
+/*
+Project: Cookbook Forum
+        * Assignment: 1
+        * Author(s): Le Duc Thinh
+        * Student Number: 101110291
+        * Date: Nov 6th 2021
+        * Description: This file is to implement Recipe service contains some abstract methods.
+*/
 package gbc.comp3095.assignment1.services;
 
 import gbc.comp3095.assignment1.models.Recipe;
@@ -8,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -24,9 +35,16 @@ public class RecipeServiceImpl implements RecipeService {
         recipeRepository.save(recipe);
     }
 
+    public Set<Recipe> listAll(String keyword) {
+        if (keyword != null) {
+            return recipeRepository.search(keyword);
+        }
+        Set<Recipe> r = new HashSet<>(recipeRepository.findAll());
+        return r;
+    }
+
     @Override
     public Recipe findByName(String name) {
         return recipeRepository.findByName(name);
     }
-
 }

@@ -1,23 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login - COMP3095 - Assignment 1</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
-    <div class="container">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand ml-3" href="/">
+                <img th:src="@{/spring.png}" width="30" height="30" class="d-inline-block align-top" alt="">
+                Assignment 1
+            </a>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>Login Form</h2>
+
         <div th:if="${param.error}">
-            Invalid username and password.
+            Invalid email and password.
         </div>
         <div th:if="${param.logout}">
             You have been logged out.
         </div>
         <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
+            <div><label> Email : <input type="text" name="username"/> </label></div>
             <div><label> Password: <input type="password" name="password"/> </label></div>
             <div><input type="submit" value="Sign In"/></div>
         </form>
+        <h3>Or click <a href="/register">HERE</a> to register.</h3>
     </div>
 
     <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>

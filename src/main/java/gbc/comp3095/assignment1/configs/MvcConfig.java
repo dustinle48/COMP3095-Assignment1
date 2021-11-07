@@ -1,3 +1,11 @@
+/*
+Project: Cookbook Forum
+        * Assignment: 1
+        * Author(s): Le Duc Thinh
+        * Student Number: 101110291
+        * Date: Nov 6th 2021
+        * Description: This file is to define some default urls.
+*/
 package gbc.comp3095.assignment1.configs;
 
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +18,6 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/login").setViewName("login/login");
         registry.addViewController("/register").setViewName("register/register");
-        registry.addViewController("/profile").setViewName("users/profile");
+        registry.addViewController("/error").setViewName("error");
     }
 }

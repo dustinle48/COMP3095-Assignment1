@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Profile - COMP3095 - Assignment 1</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
-    <div class="container">
-
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand ml-3" href="/">
+                <img th:src="@{/spring.png}" width="30" height="30" class="d-inline-block align-top" alt="">
+                Assignment 1
+            </a>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>Your Information</h2>
         <form th:object="${user}">
             <div class="form-group">
                 <label>Email</label>
@@ -25,6 +32,56 @@
             <div class="form-group">
                 <label>Lastname</label>
                 <input th:field="*{lastName}" type="text" class="form-control disabled" disabled>
+            </div>
+            <div class="form-group>">
+                <label>Your Recipes</label>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">DESCRIPTION</th>
+                        <th scope="col">AUTHOR</th>
+                        <th scope="col">LINK</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="recipe : ${recipes}">
+                        <th scope="row" th:text="${recipe.getId()}"></th>
+                        <td th:text="${recipe.name}"></td>
+                        <td th:text="${recipe.getDescription()}"></td>
+                        <td th:text="${recipe.getUser().getUserName()}"></td>
+                        <td><a th:href="@{'/recipes/' + ${recipe.name}}">View Recipe</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group>">
+                <label>Your Meals</label>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">DESCRIPTION</th>
+                        <th scope="col">AUTHOR</th>
+                        <th scope="col">RECIPES</th>
+                        <th scope="col">LINK</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="meal : ${meals}">
+                        <th scope="row" th:text="${meal.getId()}"></th>
+                        <td th:text="${meal.name}"></td>
+                        <td th:text="${meal.getDescription()}"></td>
+                        <td th:text="${meal.getUser().getUserName()}"></td>
+                        <td>
+                            <span class="badge badge-pill badge-light" th:each="recipe : ${meal.getRecipes()}" th:text="${recipe.getName()}"></span>
+                        </td>
+                        <td><a th:href="@{'/meals/' + ${meal.name}}">View Meal</a></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </form>
     </div>

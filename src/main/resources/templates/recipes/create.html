@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>Create New Recipe - COMP3095 - Assignment 1</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
-    <div class="container">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand ml-3" href="/">
+                <img th:src="@{/spring.png}" width="30" height="30" class="d-inline-block align-top" alt="">
+                Assignment 1
+            </a>
+        </div>
+    </nav>
+    <div class="container mt-5">
         <h2>Create New Recipe</h2>
 
         <form th:action="@{/recipes/create}" method="post">
@@ -21,12 +29,7 @@
 
             <div class="form-group">
                 <label>Author</label>
-                <input type="text" th:value="*{user.userName}" class="form-control" disabled>
-            </div>
-
-            <div class="form-group">
-                <label>Author</label>
-                <input type="text" th:name="recipe.user" th:value="*{user}" class="form-control" disabled>
+                <input type="text" th:name="recipe.user" th:value="*{user.userName}" class="form-control" disabled>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

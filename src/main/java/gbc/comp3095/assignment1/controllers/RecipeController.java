@@ -1,17 +1,28 @@
+/*
+Project: Cookbook Forum
+        * Assignment: 1
+        * Author(s): Le Duc Thinh
+        * Student Number: 101110291
+        * Date: Nov 6th 2021
+        * Description: This file is to set controller of Recipe.
+*/
 package gbc.comp3095.assignment1.controllers;
 
 import gbc.comp3095.assignment1.models.Recipe;
 import gbc.comp3095.assignment1.repositories.UserRepository;
 import gbc.comp3095.assignment1.services.RecipeService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import gbc.comp3095.assignment1.repositories.RecipeRepository;
 
 import java.security.Principal;
+import java.util.Set;
 
 @Controller
 public class RecipeController {
@@ -27,9 +38,17 @@ public class RecipeController {
     }
 
     @GetMapping("/recipes")
-    public String getRecipes(Model model) {
-        model.addAttribute("recipes", recipeRepository.findAll());
+    public String getRecipes(Model model, @Param("keyword") String keyword) {
+        Set<Recipe> r = recipeService.listAll(keyword);
+        model.addAttribute("recipes", r);
+        model.addAttribute("keyword", keyword);
         return "recipes/recipes";
+    }
+
+    @GetMapping("/recipes/{name}")
+    public String getRecipe(Model model, @PathVariable String name) {
+        model.addAttribute("recipe",recipeRepository.findByName(name));
+        return "recipes/name";
     }
 
     @GetMapping("/recipes/create")

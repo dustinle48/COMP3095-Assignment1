@@ -1,10 +1,16 @@
+/*
+Project: Cookbook Forum
+        * Assignment: 1
+        * Author(s): Le Duc Thinh
+        * Student Number: 101110291
+        * Date: Nov 6th 2021
+        * Description: This file is to define Recipe model.
+*/
 package gbc.comp3095.assignment1.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "RECIPE")

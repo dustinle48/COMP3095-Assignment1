@@ -1,21 +1,28 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Home - COMP3095 - Assignment 1</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
-    <div class="container">
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand ml-3" href="/">
+                <img th:src="@{/spring.png}" width="30" height="30" class="d-inline-block align-top" alt="">
+                Assignment 1
+            </a>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1 th:inline="text">Hello <span th:text="${user.userName}"></span> !</h1>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>
         </form>
-        <a href="/profile">Profile</a>
-        <a href="recipes">View Recipes</a>
-        <a href="recipes/create">Create New Recipe</a>
-        <a href="meals">View Your Meals</a>
-        <a href="meals/create">Create New Meal</a>
+        <a href="/profile" class="badge badge-primary">Profile</a>
+        <a href="/recipes" class="badge badge-secondary">View Recipes</a>
+        <a href="/recipes/create" class="badge badge-success">Create New Recipe</a>
+        <a href="/meals" class="badge badge-danger">View Meals</a>
+        <a href="/meals/create" class="badge badge-warning">Create New Meal</a>
     </div>
 
     <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>

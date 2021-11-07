@@ -1,7 +1,16 @@
+/*
+Project: Cookbook Forum
+        * Assignment: 1
+        * Author(s): Le Duc Thinh
+        * Student Number: 101110291
+        * Date: Nov 6th 2021
+        * Description: This file is to define Meal model.
+*/
 package gbc.comp3095.assignment1.models;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -79,5 +88,29 @@ public class Meal {
         this.user = user;
         this.description = description;
         this.recipes = recipes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Meal meal = (Meal) o;
+        return Objects.equals(id, meal.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", author=" + user + '\'' +
+                ", recipes=" + recipes +
+                '}';
     }
 }

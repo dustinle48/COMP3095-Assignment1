@@ -1,7 +1,14 @@
+/*
+Project: Cookbook Forum
+        * Assignment: 1
+        * Author(s): Le Duc Thinh
+        * Student Number: 101110291
+        * Date: Nov 6th 2021
+        * Description: This file is to set controller of Meal.
+*/
 package gbc.comp3095.assignment1.controllers;
 
 import gbc.comp3095.assignment1.models.Meal;
-import gbc.comp3095.assignment1.models.Recipe;
 import gbc.comp3095.assignment1.repositories.MealRepository;
 import gbc.comp3095.assignment1.repositories.RecipeRepository;
 import gbc.comp3095.assignment1.repositories.UserRepository;
@@ -11,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
@@ -34,6 +42,12 @@ public class MealController {
     public String getMeals(Model model) {
         model.addAttribute("meals", mealRepository.findAll());
         return "meals/meals";
+    }
+
+    @GetMapping("/meals/{name}")
+    public String getMeal(Model model, @PathVariable String name) {
+        model.addAttribute("meal", mealRepository.findByName(name));
+        return "meals/name";
     }
 
     @GetMapping("/meals/create")
