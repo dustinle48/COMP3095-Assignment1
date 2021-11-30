@@ -23,14 +23,12 @@
             &nbsp;
         </form>
 
-        </form>
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">NAME</th>
                     <th scope="col">DESCRIPTION</th>
-                    <th scope="col">AUTHOR</th>
                     <th scope="col">LINK</th>
                 </tr>
             </thead>
@@ -39,7 +37,6 @@
                     <th scope="row" th:text="${recipe.getId()}"></th>
                     <td th:text="${recipe.getName()}"></td>
                     <td th:text="${recipe.getDescription()}"></td>
-                    <td th:text="${recipe.getUser().getUserName()}"></td>
                     <td><a th:href="@{'/recipes/' + ${recipe.name}}">View Recipe</a></td>
                 </tr>
             </tbody>

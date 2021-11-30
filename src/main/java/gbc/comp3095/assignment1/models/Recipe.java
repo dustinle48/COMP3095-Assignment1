@@ -10,7 +10,9 @@ package gbc.comp3095.assignment1.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "RECIPE")
@@ -26,6 +28,10 @@ public class Recipe {
     @ManyToOne()
     private User user;
     @JoinTable(name = "recipe_user", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+
+    @ManyToMany()
+    private Set<Ingredient> ingredients = new HashSet<>();
+    @JoinTable(name = "recipe_ingredient", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns =@JoinColumn(name = "ingredient_id"))
 
     //Id
     public Long getId() {
@@ -68,6 +74,11 @@ public class Recipe {
         this.user = user;
     }
 
+    //Ingredient
+    public Set<Ingredient> getIngredients() { return ingredients; }
+
+    public void setIngredients(Set<Ingredient> ingredients){ this.ingredients = ingredients; }
+
     public Recipe() {
     }
 
@@ -84,6 +95,12 @@ public class Recipe {
         this.name = name;
         this.user = user;
         this.description = description;
+    }
+    public Recipe(String name, User user, String description, Set<Ingredient> ingredients) {
+        this.name = name;
+        this.user = user;
+        this.description = description;
+        this.ingredients = ingredients;
     }
 
     @Override
