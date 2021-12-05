@@ -1,3 +1,11 @@
+/*
+Project: Cookbook Forum
+        * Assignment: 2
+        * Author(s): Le Duc Thinh
+        * Student Number: 101110291
+        * Date: Dec 5th 2021
+        * Description: This file is to implement Mailing service and handle mail sending procedure.
+*/
 package gbc.comp3095.assignment1.services;
 
 import org.springframework.beans.factory.annotation.Autowired;

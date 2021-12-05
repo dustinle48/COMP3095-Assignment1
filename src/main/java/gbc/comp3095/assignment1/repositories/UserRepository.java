@@ -1,9 +1,9 @@
 /*
 Project: Cookbook Forum
-        * Assignment: 1
+        * Assignment: 2
         * Author(s): Le Duc Thinh
         * Student Number: 101110291
-        * Date: Nov 6th 2021
+        * Date: Dec 5th 2021
         * Description: This file is Meal repository, extend jpa repository.
 */
 package gbc.comp3095.assignment1.repositories;

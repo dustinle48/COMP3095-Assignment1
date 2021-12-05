@@ -1,9 +1,9 @@
 /*
 Project: Cookbook Forum
-        * Assignment: 1
+        * Assignment: 2
         * Author(s): Le Duc Thinh
         * Student Number: 101110291
-        * Date: Nov 6th 2021
+        * Date: Dec 5th 2021
         * Description: This file is to set web security and bcrypt. Unregistered users will be redirected to log in or register page. Only registered users are able to view home page and the rest.
 */
 package gbc.comp3095.assignment1.configs;
@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/login","/register","/login/forgotpassword","/resetpassword/{id}","/users").permitAll()
+                    .antMatchers("/login","/register","/login/forgotpassword","/resetpassword/{id}").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
