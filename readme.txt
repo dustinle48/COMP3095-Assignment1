@@ -1,3 +1,3 @@
 default user
-email: dt@gmail.com
+email: ducthinh481994@gmail.com
 pass: 123
