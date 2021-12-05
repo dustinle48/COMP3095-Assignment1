@@ -20,4 +20,9 @@ public interface MealRepository extends JpaRepository<Meal, Long> {
 
     @Query("SELECT r FROM Meal r WHERE r.user.userName LIKE %?1%")
     public Set<Meal> findByUsername(String userName);
+
+    @Query("SELECT r FROM Meal r WHERE r.name LIKE %?1%"
+            + " OR r.description LIKE %?1%"
+            + " OR r.user.userName LIKE %?1%")
+    public Set<Meal> search(String keyword);
 }

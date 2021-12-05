@@ -3,36 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Login - COMP3095 - Assignment 1</title>
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-<body>
-    <nav class="navbar navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand ml-3" href="/">
-                <img th:src="@{/spring.png}" width="30" height="30" class="d-inline-block align-top" alt="">
-                Assignment 1
-            </a>
-        </div>
-    </nav>
-    <div class="container mt-5">
-        <h2>Login Form</h2>
+<body style="background-color: #F0F2F5">
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="shadow bg-body rounded col-4 p-5">
+                <h2 class="text-center mb-5">Login Form</h2>
 
-        <div th:if="${param.error}">
-            Invalid email and password.
+                <form th:action="@{/login}" method="post">
+                    <div class="mb-3">
+                        <input type="text" id="email" name="username" class="form-control form-control-lg bg-light" placeholder="Email">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" id="password" name="password" class="form-control form-control-lg bg-light" placeholder="Password">
+                    </div>
+                    <div class="d-flex">
+                        <a href="/login/forgotpassword" class="ms-auto">Forgot your password</a>
+                    </div>
+                    <div class="d-flex" th:if="${param.error}">
+                        <p class="mx-auto text-muted">
+                            Invalid email and password.
+                        </p>
+                    </div>
+                    <div class="d-flex" th:if="${param.logout}">
+                        <p class="mx-auto text-muted">
+                            You have been logged out.
+                        </p>
+                    </div>
+                    <div class="my-3 d-flex">
+                        <input class="mx-auto rounded btn btn-primary btn-lg" type="submit" value="Sign In"/>
+                    </div>
+                </form>
+
+                <h3 class="text-center my-4">Or</h3>
+
+                <div class="d-flex">
+                    <a href="/register" class="btn btn-outline-secondary btn-lg mx-auto">REGISTER</a>
+                </div>
+            <div class="col-4"></div>
         </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
-        </div>
-        <form th:action="@{/login}" method="post">
-            <div><label> Email : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
-        <h3>Or click <a href="/register">HERE</a> to register.</h3>
     </div>
 
-    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

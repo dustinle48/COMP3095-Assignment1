@@ -8,14 +8,8 @@ Project: Cookbook Forum
 */
 package gbc.comp3095.assignment1.bootstrap;
 
-import gbc.comp3095.assignment1.models.Ingredient;
-import gbc.comp3095.assignment1.models.Meal;
-import gbc.comp3095.assignment1.models.Recipe;
-import gbc.comp3095.assignment1.models.User;
-import gbc.comp3095.assignment1.repositories.IngredientRepository;
-import gbc.comp3095.assignment1.repositories.MealRepository;
-import gbc.comp3095.assignment1.repositories.RecipeRepository;
-import gbc.comp3095.assignment1.repositories.UserRepository;
+import gbc.comp3095.assignment1.models.*;
+import gbc.comp3095.assignment1.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -28,33 +22,43 @@ public class BootstrapData implements CommandLineRunner {
     private RecipeRepository recipeRepository;
     private MealRepository mealRepository;
     private IngredientRepository ingredientRepository;
+    private EventRepository eventRepository;
     private BCryptPasswordEncoder passwordEncoder;
 
-    public BootstrapData(UserRepository userRepository, RecipeRepository recipeRepository, MealRepository mealRepository, IngredientRepository ingredientRepository, BCryptPasswordEncoder passwordEncoder) {
+    public BootstrapData(UserRepository userRepository, RecipeRepository recipeRepository, MealRepository mealRepository, IngredientRepository ingredientRepository, EventRepository eventRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.recipeRepository = recipeRepository;
         this.mealRepository = mealRepository;
         this.ingredientRepository = ingredientRepository;
+        this.eventRepository = eventRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        User thinh = new User("dt@gmail.com", passwordEncoder.encode("123"),"Dustin","Thinh","Le");
-        userRepository.save(thinh);
-
         Ingredient egg = new Ingredient("egg","Brown ones should be better");
         Ingredient rice = new Ingredient("rice","Vietnamese and Thai rice is the best in the world");
+        Ingredient milk = new Ingredient("milk", "Any kind of milk is good.");
         ingredientRepository.save(egg);
         ingredientRepository.save(rice);
+        ingredientRepository.save(milk);
 
-        Recipe egg_fried_rice = new Recipe("egg fried rice",thinh,"fry rice with egg");
-        Recipe milk = new Recipe("milk", thinh, "Buy some milk");
+        Set<Ingredient> i = Set.of(egg,rice);
+        User thinh = new User("ducthinh481994@gmail.com", passwordEncoder.encode("123"),"Dustin","Thinh","Le",i);
+        userRepository.save(thinh);
+
+        Set<Ingredient> efr = Set.of(egg,rice);
+        Set<Ingredient> c = Set.of(egg,milk);
+        Recipe egg_fried_rice = new Recipe("egg fried rice",thinh,"fry rice with egg",efr);
+        Recipe cake = new Recipe("cake", thinh, "make cake with milk and egg",c);
         recipeRepository.save(egg_fried_rice);
-        recipeRepository.save(milk);
+        recipeRepository.save(cake);
 
-        Set<Recipe> s = Set.of(egg_fried_rice,milk);
+        Set<Recipe> s = Set.of(egg_fried_rice,cake);
         Meal breakfast = new Meal("breakfast", thinh, "Simple meal for breakfast",s);
         mealRepository.save(breakfast);
+
+        Event xmas = new Event("xmas","merry xmas",thinh);
+        eventRepository.save(xmas);
     }
 }

@@ -9,6 +9,7 @@ Project: Cookbook Forum
 package gbc.comp3095.assignment1.services;
 
 import gbc.comp3095.assignment1.models.Recipe;
+import gbc.comp3095.assignment1.models.User;
 
 import java.util.Set;
 
@@ -16,5 +17,5 @@ public interface RecipeService {
     Recipe findByName(String name);
 
     Set<Recipe> listAll(String keyword);
-    void save(Recipe recipe);
+    void save(Recipe recipe, User user);
 }

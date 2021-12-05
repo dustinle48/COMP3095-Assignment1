@@ -27,10 +27,7 @@ public class RecipeServiceImpl implements RecipeService {
     @Autowired
     private UserRepository userRepository;
 
-    public void save(Recipe recipe) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String s = authentication.getName();
-        User user = userRepository.findByEmail(s);
+    public void save(Recipe recipe, User user) {
         recipe.setUser(user);
         recipeRepository.save(recipe);
     }

@@ -3,40 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New Recipe - COMP3095 - Assignment 1</title>
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light justify-content-between">
         <div class="container">
             <a class="navbar-brand ml-3" href="/">
                 <img th:src="@{/spring.png}" width="30" height="30" class="d-inline-block align-top" alt="">
-                Assignment 1
+                Assignment 2
             </a>
+            <form class="d-flex" th:action="@{/logout}" method="post">
+                <img th:src="@{/ava.png}" width="30" height="30" class="rounded">
+                <a th:href="@{/profile}" class="btn btn-light me-2" th:text="${user.userName}"></a>
+                <input class="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit" value="Sign Out"/>
+            </form>
         </div>
     </nav>
     <div class="container mt-5">
-        <h2>Create New Recipe</h2>
+        <h2 class="my-2">CREATE NEW RECIPE</h2>
 
         <form th:action="@{/recipes/create}" method="post">
-            <div class="form-group">
-                <label>Name</label>
-                <input th:field="*{recipe.name}" type="text" class="form-control">
+            <div class="row my-1">
+                <div class="col-1">
+                    <label for="name" class="col-form-label">Name</label>
+                </div>
+                <div class="col-auto">
+                    <input id="name" class="form-control" th:field="*{recipe.name}" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Description</label>
-                <input th:field="*{recipe.description}" type="text" class="form-control">
+            <div class="row my-1">
+                <div class="col-1">
+                    <label for="description" class="col-form-label">Description</label>
+                </div>
+                <div class="col-auto">
+                    <input id="description" class="form-control" th:field="*{recipe.description}" required>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label>Author</label>
-                <input type="text" th:name="recipe.user" th:value="*{user.userName}" class="form-control" disabled>
+            <div class="row my-1">
+                <div class="col-1">
+                    <label class="col-form-label">Ingredient</label>
+                </div>
+                <div class="col-auto form-check form-check-inline" th:each="ingredient : ${ingredients}">
+                    <input class="form-check-input" type="checkbox" id="ingredient" th:field="*{recipe.ingredients}"
+                           th:value="${ingredient.id}"
+                    >
+                    <label class="form-check-label" for="ingredient" th:text="${ingredient.name}"></label>
+                </div>
+            </div>
+            <div class="row my-1">
+                <div class="col-1">
+                    <label for="author" class="col-form-label">Author</label>
+                </div>
+                <div class="col-auto">
+                    <input id="author" class="form-control" th:name="recipe.user" th:value="*{user.userName}" disabled>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
-    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -9,10 +9,14 @@
     <tr>
         <th>ID</th>
         <th>TITLE</th>
+        <th>EMAIL</th>
+        <th>PASSWORD</th>
     </tr>
     <tr th:each="user : ${users}">
-        <td th:text="${user.getUserName()}">123</td>
-        <td th:text="${user.getRecipes()}"></td>
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getUserName()}"></td>
+        <td th:text="${user.getEmail()}"></td>
+        <td th:text="${user.getPassword()}"></td>
     </tr>
 </table>
 

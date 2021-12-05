@@ -18,6 +18,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
@@ -27,15 +28,17 @@ public class MealServiceImpl implements MealService {
     @Autowired
     private UserRepository userRepository;
 
-    public void save(Meal meal) {
-        Set<Recipe> recipes = meal.getRecipes();
-        meal.setRecipes(recipes);
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String s = authentication.getName();
-        User user = userRepository.findByEmail(s);
+    public void save(Meal meal, User user) {
         meal.setUser(user);
         mealRepository.save(meal);
-        System.out.println(meal.getRecipes());
+    }
+
+    public Set<Meal> listAll(String keyword) {
+        if (keyword != null) {
+            return mealRepository.search(keyword);
+        }
+        Set<Meal> r = new HashSet<>(mealRepository.findAll());
+        return r;
     }
 
     @Override

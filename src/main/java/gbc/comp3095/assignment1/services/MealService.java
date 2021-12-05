@@ -9,9 +9,13 @@ Project: Cookbook Forum
 package gbc.comp3095.assignment1.services;
 
 import gbc.comp3095.assignment1.models.Meal;
+import gbc.comp3095.assignment1.models.User;
+
+import java.util.Set;
 
 public interface MealService {
     Meal findByName(String name);
     Meal findByUserEmail(String email);
-    void save(Meal meal);
+    Set<Meal> listAll(String keyword);
+    void save(Meal meal, User user);
 }

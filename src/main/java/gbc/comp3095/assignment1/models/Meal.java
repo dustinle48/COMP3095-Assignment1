@@ -8,12 +8,16 @@ Project: Cookbook Forum
 */
 package gbc.comp3095.assignment1.models;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Table(name = "MEAL")
+@DynamicUpdate
 public class Meal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

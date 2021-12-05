@@ -1,6 +1,6 @@
 /*
 Project: Cookbook Forum
-        * Assignment: 1
+        * Assignment: 2
         * Author(s): Le Duc Thinh
         * Student Number: 101110291
         * Date: Nov 6th 2021
@@ -8,12 +8,15 @@ Project: Cookbook Forum
 */
 package gbc.comp3095.assignment1.models;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "USER")
+@DynamicUpdate
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,13 +37,13 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Meal> meals;
 
-    public Set<Meal> getMeals() {
-        return meals;
-    }
+    @ManyToMany()
+    private Set<Ingredient> cart;
+    @JoinTable(name = "user_ingredient", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
 
-    public void setMeals(Set<Meal> meals) {
-        this.meals = meals;
-    }
+    @ManyToMany()
+    private Set<Recipe> favorite;
+    @JoinTable(name = "cart", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "recipe_id"))
 
     //Id
     public Long getId() {
@@ -96,15 +99,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    //Role
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
     //Recipe
     public Set<Recipe> getRecipes() {
         return recipes;
@@ -112,6 +106,34 @@ public class User {
 
     public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
+    }
+
+    //Meal
+    public Set<Meal> getMeals() {
+        return meals;
+    }
+
+    public void setMeals(Set<Meal> meals) {
+        this.meals = meals;
+    }
+
+    //Cart
+    public Set<Ingredient> getCart() { return cart; }
+
+    public void setCart(Set<Ingredient> cart) { this.cart = cart; }
+
+    //Favorite
+    public Set<Recipe> getFavorite() { return favorite; }
+
+    public void setFavorite(Set<Recipe> favorite) { this.favorite = favorite; }
+
+    //Role
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     //Constructors
@@ -123,12 +145,42 @@ public class User {
         this.password = password;
     }
 
+    public User(String password) {
+        this.password = password;
+    }
+
+    public User(String email, String userName, String firstName, String lastName) {
+        this.email = email;
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public User(String email, String password, String userName, String firstName, String lastName) {
         this.email = email;
         this.password = password;
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public User(String email, String password, String userName, String firstName, String lastName, Set<Ingredient> cart) {
+        this.email = email;
+        this.password = password;
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.cart = cart;
+    }
+
+    public User(String email, String password, String userName, String firstName, String lastName, Set<Ingredient> cart, Set<Recipe> favorite) {
+        this.email = email;
+        this.password = password;
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.cart = cart;
+        this.favorite = favorite;
     }
 
     @Override
